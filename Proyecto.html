@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+        background-image: url('https://th.bing.com/th/id/R.ca5f0f0e8c8dc982f4e52087c041a09a?rik=%2fE6JK5x5oPqMZQ&riu=http%3a%2f%2fwww.triple-s.org%2fwp-content%2fthemes%2ftripleS%2fimages%2fsurvey-software-users.jpg&ehk=42QOi34Hjk5AxoO64jVodsQBSb9j1O1zsdjI6NLw%2fpc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1');
+        background-size: cover;
+      }
+        .form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  margin: 0 20px;
+}
+
+.form h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #3e8e41;
+}
+
+#error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+    </style>
+</head>
+<body>
+    <script>
+      // Datos de usuario para el inicio de sesión
+let users = [
+  {username: "user1", password: "pass1"},
+  {username: "user2", password: "pass2"},
+  {username: "user3", password: "pass3"}
+];
+
+// Función para el inicio de sesión
+function login(event) {
+  event.preventDefault();
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+  for (let i = 0; i < users.length; i++) {
+    if (username === users[i].username && password === users[i].password) {
+      alert("Inicio de sesión exitoso");
+      return;
+    }
+  }
+  alert("Nombre de usuario o contraseña incorrectos");
+}
+
+// Función para el registro
+function register(event) {
+  event.preventDefault();
+  let newUsername = document.getElementById("new-username").value;
+  let newPassword = document.getElementById("new-password").value;
+  let confirmNewPassword = document.getElementById("confirm-password").value;
+  for (let i = 0; i < users.length; i++) {
+    if (newUsername === users[i].username) {
+      alert("El nombre de usuario ya existe");
+      return;
+    }
+  }
+  if (newPassword !== confirmNewPassword) {
+    alert("Las contraseñas no coinciden");
+    return;
+  }
+  users.push({username: newUsername, password: newPassword});
+  alert("Registro exitoso");
+}
+ 
+// Event listeners para los botones
+document.getElementById("login-btn").addEventListener("click", login);
+document.getElementById("register-btn").addEventListener("click", register);
+    </script>
+    <div class="form-container">
+        <form id="login-form" class="form">
+          <h2>Iniciar sesión</h2>
+          <div class="form-group">
+            <label for="login-email">Correo electrónico</label>
+            <input type="email" id="login-email" name="login-email" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Contraseña</label>
+            <input type="password" id="login-password" name="login-password" required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn">Iniciar sesión</button>
+          </div>
+        </form>
+      
+        <form id="register-form" class="form">
+          <h2>Registrarse</h2>
+          <div class="form-group">
+            <label for="register-name">Nombre completo</label>
+            <input type="text" id="register-name" name="register-name" required>
+          </div>
+          <div class="form-group">
+            <label for="register-email">Correo electrónico</label>
+            <input type="email" id="register-email" name="register-email" required>
+          </div>
+          <div class="form-group">
+            <label for="register-password">Contraseña</label>
+            <input type="password" id="register-password" name="register-password" required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn">Registrarse</button>
+          </div>
+        </form>
+      </div>
+</body>
+</html>
